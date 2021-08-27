@@ -40,7 +40,6 @@ router.post('/addbook', async (req : Request, res : Response) => {
 router.post('/getbook', async (req : Request, res : Response) => {
     try{
         const title : string = req.body
-        console.log(title)
         const result = await getbook(title)
         res.status(200).send(result)
     }catch(err){

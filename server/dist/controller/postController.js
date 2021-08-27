@@ -1,5 +1,5 @@
 /**
- * controller에서 함수만 정의를 할 것인지 하니면, 라우팅도 같이 할것인지..
+ * controller에서 함수만 정의를 할
  */
 'use strict';
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
@@ -83,18 +83,26 @@ function getbook(title) {
             switch (_a.label) {
                 case 0:
                     book_title = title;
+                    console.log(typeof book_title);
                     aws_sdk_1.default.config.update(book_1.default.aws_iam_info);
                     docClient = new aws_sdk_1.default.DynamoDB.DocumentClient();
                     params = {
                         TableName: book_1.default.aws_table_name,
-                        KeyConditionExpression: 'title = :i',
+                        KeyConditionExpression: "title = :title",
                         ExpressionAttributeValues: {
-                            ':i': book_title
+                            ":title": book_title
                         }
+                        // TableName : bookConfig.aws_table_name,
+                        // KeyConditionExpression: 'title = :i',
+                        // ExpressionAttributeValues: {
+                        //     ':i' : book_title
+                        // }
                     };
+                    console.log(params);
                     return [4 /*yield*/, docClient.query(params).promise()];
                 case 1:
                     result = _a.sent();
+                    console.log(result);
                     return [2 /*return*/, result];
             }
         });

@@ -1,5 +1,5 @@
 /**
- * controller에서 함수만 정의를 할 것인지 하니면, 라우팅도 같이 할것인지..
+ * controller에서 함수만 정의를 할
  */
 
 'use strict';
@@ -17,7 +17,6 @@ export function returning(info : post_interface){
 
 export async function addBook(info : post_interface){
     const newbook = info
-
     AWS.config.update(bookConfig.aws_iam_info);
     const docClient = new AWS.DynamoDB.DocumentClient();
     const params = {
@@ -33,20 +32,28 @@ export async function addBook(info : post_interface){
 
 }
 
-export async function getbook(title : string){
-    const book_title : string = title
-
+export async function getbook(title : String){
+    const book_title = title
+    console.log(typeof book_title)
     AWS.config.update(bookConfig.aws_iam_info);
     const docClient = new AWS.DynamoDB.DocumentClient();
+
+    
     const params = {
         TableName : bookConfig.aws_table_name,
-        KeyConditionExpression: 'title = :i',
+        KeyConditionExpression: "title = :title",
         ExpressionAttributeValues: {
-            ':i' : book_title
+            ":title": book_title
         }
+        // TableName : bookConfig.aws_table_name,
+        // KeyConditionExpression: 'title = :i',
+        // ExpressionAttributeValues: {
+        //     ':i' : book_title
+        // }
     };
-
+    console.log(params)
     const result = await docClient.query(params).promise()
+    console.log(result)
     return result
 
 }

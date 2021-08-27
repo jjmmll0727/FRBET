@@ -81,7 +81,6 @@ router.post('/getbook', function (req, res) { return __awaiter(void 0, void 0, v
             case 0:
                 _a.trys.push([0, 2, , 3]);
                 title = req.body;
-                console.log(title);
                 return [4 /*yield*/, postController_1.getbook(title)];
             case 1:
                 result = _a.sent();
