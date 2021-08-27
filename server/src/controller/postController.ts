@@ -35,6 +35,7 @@ export async function addBook(info : post_interface){
 export async function getbook(title : String){
     const book_title = title
     console.log(typeof book_title)
+    // 이게 왜 string 이 아니고 object 일까
     AWS.config.update(bookConfig.aws_iam_info);
     const docClient = new AWS.DynamoDB.DocumentClient();
 
