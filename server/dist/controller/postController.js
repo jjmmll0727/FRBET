@@ -84,6 +84,7 @@ function getbook(title) {
                 case 0:
                     book_title = title;
                     console.log(typeof book_title);
+                    // 이게 왜 string 이 아니고 object 일까
                     aws_sdk_1.default.config.update(book_1.default.aws_iam_info);
                     docClient = new aws_sdk_1.default.DynamoDB.DocumentClient();
                     params = {
