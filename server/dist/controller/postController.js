@@ -1,7 +1,3 @@
-/**
- * javascript와 마찬가지로 함수를 정의하고 구현한다.
- * 라우팅에서 경로 설정
- */
 'use strict';
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
@@ -16,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getbook = exports.addBook = void 0;
+exports.showAll = exports.getbook = exports.addBook = void 0;
 const book_1 = __importDefault(require("../config/aws/book"));
 const aws_sdk_1 = __importDefault(require("aws-sdk"));
 const addBook = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -62,3 +58,20 @@ const getbook = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 exports.getbook = getbook;
+const showAll = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        aws_sdk_1.default.config.update(book_1.default.aws_iam_info);
+        const docClient = new aws_sdk_1.default.DynamoDB.DocumentClient();
+        const params = {
+            TableName: book_1.default.aws_table_name,
+            //ProjectionExpression: "title, author, content"
+        };
+        const result = yield docClient.scan(params).promise();
+        res.status(200).send(result);
+    }
+    catch (err) {
+        console.log(err);
+        res.status(500).send(err);
+    }
+});
+exports.showAll = showAll;

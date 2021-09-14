@@ -1,13 +1,6 @@
-/**
- * javascript와 마찬가지로 함수를 정의하고 구현한다. 
- * 라우팅에서 경로 설정 
- */
-
 'use strict';
 
-import * as express from 'express';
 import post_interface from '../interface/post';
-import router from '../routes';
 import bookConfig from '../config/aws/book'
 import AWS from "aws-sdk";
 import { Response, Request } from "express"
@@ -48,6 +41,22 @@ export const getbook = async(req:Request, res: Response) => {
             }
         };
         const result = await docClient.query(params).promise()
+        res.status(200).send(result)
+    }catch(err){
+        console.log(err)
+        res.status(500).send(err)
+    }
+}
+
+export const showAll = async(req: Request, res: Response) => {
+    try{
+        AWS.config.update(bookConfig.aws_iam_info);
+        const docClient = new AWS.DynamoDB.DocumentClient();
+        const params = {
+            TableName : bookConfig.aws_table_name,
+            //ProjectionExpression: "title, author, content"
+        };
+        const result = await docClient.scan(params).promise()
         res.status(200).send(result)
     }catch(err){
         console.log(err)
