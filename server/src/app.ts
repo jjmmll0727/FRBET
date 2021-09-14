@@ -2,9 +2,16 @@ import express from 'express';
 const app: express.Application = express();
 import postRouter from '../src/routes/post';
 import indexRouter from '../src/routes/index';
+import cors from 'cors';
+
 
 app.use(express.json()) // 이 한문장의 순서때문에 request를 받지 못한 것...
 app.use(express.urlencoded({ extended: false }));
+const corsOptions = {
+  origin: 'http://localhost:3000',
+  credentials: true, 
+};
+app.use(cors(corsOptions))
 
 // error handler
 app.use(function(

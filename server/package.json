@@ -4,15 +4,20 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "client": "cd ../client && npm start",
     "start": "tsc-watch --onSuccess \"ts-node dist/app.js\"",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "tsc-watch --onSuccess \"nodemon dist/app.js\""
+    "dev": "concurrently tsc-watch --onSuccess \"npm run client\" \"ts-node dist/app.js\"",
+    "dev-con": "concurrently --kill-others-in-fail \"npm start\" \"npm run client\""
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/cors": "^2.8.12",
     "@types/express": "^4.17.13",
     "@types/node": "^16.7.1",
+    "concurrently": "^6.2.1",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "ts-node": "^10.2.1",
     "tsc-watch": "^4.5.0",
