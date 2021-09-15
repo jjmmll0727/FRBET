@@ -4,11 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "client": "cd ../client && npm start",
+    "client": "npm start --prefix ../client",
     "start": "tsc-watch --onSuccess \"ts-node dist/app.js\"",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "concurrently tsc-watch --onSuccess \"npm run client\" \"ts-node dist/app.js\"",
-    "dev-con": "concurrently --kill-others-in-fail \"npm start\" \"npm run client\""
+    "dev-con": "concurrently \"npm run start\" \"npm run client\""
   },
   "author": "",
   "license": "ISC",

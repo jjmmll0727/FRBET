@@ -60,6 +60,7 @@ const getbook = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 exports.getbook = getbook;
 const showAll = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
+        res.header("Access-Control-Allow-Origin", "*");
         aws_sdk_1.default.config.update(book_1.default.aws_iam_info);
         const docClient = new aws_sdk_1.default.DynamoDB.DocumentClient();
         const params = {

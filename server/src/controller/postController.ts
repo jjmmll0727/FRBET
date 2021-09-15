@@ -50,6 +50,7 @@ export const getbook = async(req:Request, res: Response) => {
 
 export const showAll = async(req: Request, res: Response) => {
     try{
+        res.header("Access-Control-Allow-Origin", "*");
         AWS.config.update(bookConfig.aws_iam_info);
         const docClient = new AWS.DynamoDB.DocumentClient();
         const params = {

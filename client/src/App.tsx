@@ -1,43 +1,41 @@
-import React, { useEffect } from 'react';
-import logo from './logo.svg';
-import './App.css';
-import axios from 'axios'
-import { render } from '@testing-library/react';
-// function App() {
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         <img src={logo} className="App-logo" alt="logo" />
-//         <p>
-//           Edit <code>src/App.tsx</code> and save to reload.
-//         </p>
-//         <a
-//           className="App-link"
-//           href="https://reactjs.org"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           Learn React
-//         </a>
-//       </header>
-//     </div>
-//   );
-// }
+import React, { useState } from 'react';
+import axios from 'axios';
 
-const App = () => {
-  useEffect(() => {
-    axiosTest();
-  })
+function AxiosApi() {
+    
+  // photos, setPhotos 비구조화 할당
+  let [photos, setPhotos]  = useState<any[]>([]);
 
-  const axiosTest = () => {
-    axios.get('http://localhost:3010/post/showAll')
-    .then((res) => console.log(res.data))
-    .catch((err) => console.log(err))
+  // 통신 메서드
+  function searchApi() {
+      const url = "https://localhos:3300/post/showAll";
+      axios.get(url)
+      .then(function(response) {
+          setPhotos(response.data);
+          console.log("성공");
+      })
+      .catch(function(error) {
+          console.log("실패");
+      })
+      
   }
 
-  return <p>showAll</p>
-  
+  // 조회 데이터 존재할 경우
+  if(photos.length > 0) {
+      return (
+          photos.map(photo => (
+              
+                  <div key={photo.author}>
+                      <p>content : {photo.content}</p>
+                  </div>)
+          )
+      );
+  } else { // 조회 데이터 존재하지 않을 경우
+      return (
+          <div>
+              <button onClick={searchApi}> 불러오기 </button>
+          </div>
+      )
+  }
 }
-
-
-export default App;
+export default AxiosApi;

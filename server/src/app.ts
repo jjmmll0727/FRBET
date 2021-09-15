@@ -38,7 +38,7 @@ app.get('/', (req: express.Request, res: express.Response) => {
 app.use('/', indexRouter);
 app.use('/post', postRouter)
 
-app.listen(3010, () => {
+app.listen(3300, () => {
     console.log('실행중...');
 });
 
