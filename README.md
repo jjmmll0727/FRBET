@@ -47,7 +47,7 @@ ES6은 인터페이스를 지원하지 않지만, typescript는 인터페이스�
 
 <br><br>
 
-<img src="./server/img/postman.png" width="800px" height="400px"></img>
+<img src="./server/img/postman.png" width="800px" height="500px"></img>
 
 
 
