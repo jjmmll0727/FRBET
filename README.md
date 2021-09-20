@@ -43,11 +43,11 @@ ES6은 인터페이스를 지원하지 않지만, typescript는 인터페이스�
 ### test
 `npm run dev`
 
-![npm_run_dev](/img/npmrundev.png)
+![npm_run_dev](./img/npmrundev.png)
 
 <br><br>
 
-![postman](/img/postman.png)
+![postman](./img/postman.png)
 
 
 
