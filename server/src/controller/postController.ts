@@ -1,7 +1,7 @@
 'use strict';
 
 import post_interface from '../interface/post';
-import bookConfig from '../config/aws/book'
+import bookConfig from '../../config/aws/book'
 import AWS from "aws-sdk";
 import { Response, Request } from "express"
 
