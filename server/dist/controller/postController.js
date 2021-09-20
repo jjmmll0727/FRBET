@@ -65,7 +65,6 @@ const showAll = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const docClient = new aws_sdk_1.default.DynamoDB.DocumentClient();
         const params = {
             TableName: book_1.default.aws_table_name,
-            //ProjectionExpression: "title, author, content"
         };
         const result = yield docClient.scan(params).promise();
         res.status(200).send(result);
